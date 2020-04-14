@@ -1,0 +1,330 @@
+/* You can add global styles to this file, and also import other style files */
+
+* {
+    font-weight: normal;
+}
+
+.mat-dialog-container {
+    position: relative !important;
+    // background-color: transparent !important;
+}
+
+.dark-red-color {
+    color: #A82C2C !important;
+}
+
+.red-color {
+    color: #EA1313 !important;
+}
+
+.green-color {
+    color: #52CE27 !important;
+}
+
+.white-color {
+    color: #C4C4C4 !important;
+}
+
+.dark-gray-bg {
+    background-color: #2A2B2E !important;
+}
+
+.dark-gray-bg-2 {
+    background-color: #3F3D3D !important;
+}
+
+.black-color {
+    color: #000000 !important;
+}
+
+.black-bg {
+    background-color: #000000 !important;
+}
+
+.text-bold {
+    font-weight: bold !important;
+}
+
+.text-bolder {
+    font-weight: bolder !important;
+}
+
+.main-black-btn {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    border-radius: 60px !important;
+}
+
+.main-green-btn {
+    background-color: #08E6C2 !important;
+    color: #000000 !important;
+    border-radius: 60px !important;
+}
+
+.border-radius-60 {
+    border-radius: 60px !important;
+}
+
+.border-radius-8 {
+    border-radius: 8px !important;
+}
+
+.border-radius-10 {
+    border-radius: 10px !important;
+}
+
+button:focus {
+    outline: 1px dotted;
+    outline: none !important;
+    outline: 0 !important;
+    outline: 0px auto transparent !important;
+}
+
+.form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: transparent !important;
+    outline: 0;
+    box-shadow: 0 0 0 0.1rem transparent !important;
+}
+
+.mat-list-base {
+    padding-top: 0 !important;
+}
+
+.border-radius-8 {
+    border-radius: 8px !important;
+}
+
+html,
+body {
+    scroll-behavior: smooth;
+    height: 100%;
+    // background-color: #000000;
+    background: #000000 url('./assets/logo/corona-logo.svg');
+    background-position: center;
+    background-size: 30%;
+    background-repeat: no-repeat;
+    // opacity: 0.2;
+    // position: fixed;
+    // width: 100%;
+    // height: 100%;
+    // left: 0;
+    // top: 0;
+    // z-index: 0;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+a {
+    &:hover {
+        text-decoration: none !important;
+        // color: #0000 !important;
+    }
+}
+
+@-webkit-keyframes jump {
+    0% {
+        -webkit-transform: translateY(5px);
+        transform: translateY(5px);
+    }
+    50% {
+        -webkit-transform: translateY(-10px);
+        transform: translateY(-10px);
+    }
+    100% {
+        -webkit-transform: translateY(5px);
+        transform: translateY(5px);
+    }
+}
+
+@keyframes jump {
+    0% {
+        -webkit-transform: translateY(5px);
+        transform: translateY(5px);
+    }
+    50% {
+        -webkit-transform: translateY(-10px);
+        transform: translateY(-10px);
+    }
+    100% {
+        -webkit-transform: translateY(5px);
+        transform: translateY(5px);
+    }
+}
+
+.breathing1 {
+    -webkit-animation: jump 3s ease-out infinite normal;
+    animation: jump 3s ease-out infinite normal;
+}
+
+.breathing2 {
+    -webkit-animation: jump 5s ease-out infinite normal;
+    animation: jump 5s ease-out infinite normal;
+}
+
+.rotate {
+    -webkit-animation: spin 20s linear infinite;
+    -moz-animation: spin 20s linear infinite;
+    animation: spin 20s linear infinite;
+}
+
+@-moz-keyframes spin {
+    100% {
+        -moz-transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes spin {
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+// 
+.lds-roller {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+
+.lds-roller div {
+    animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    transform-origin: 40px 40px;
+}
+
+.lds-roller div:after {
+    content: " ";
+    display: block;
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #C4C4C4;
+    margin: -4px 0 0 -4px;
+}
+
+.lds-roller div:nth-child(1) {
+    animation-delay: -0.036s;
+}
+
+.lds-roller div:nth-child(1):after {
+    top: 63px;
+    left: 63px;
+}
+
+.lds-roller div:nth-child(2) {
+    animation-delay: -0.072s;
+}
+
+.lds-roller div:nth-child(2):after {
+    top: 68px;
+    left: 56px;
+}
+
+.lds-roller div:nth-child(3) {
+    animation-delay: -0.108s;
+}
+
+.lds-roller div:nth-child(3):after {
+    top: 71px;
+    left: 48px;
+}
+
+.lds-roller div:nth-child(4) {
+    animation-delay: -0.144s;
+}
+
+.lds-roller div:nth-child(4):after {
+    top: 72px;
+    left: 40px;
+}
+
+.lds-roller div:nth-child(5) {
+    animation-delay: -0.18s;
+}
+
+.lds-roller div:nth-child(5):after {
+    top: 71px;
+    left: 32px;
+}
+
+.lds-roller div:nth-child(6) {
+    animation-delay: -0.216s;
+}
+
+.lds-roller div:nth-child(6):after {
+    top: 68px;
+    left: 24px;
+}
+
+.lds-roller div:nth-child(7) {
+    animation-delay: -0.252s;
+}
+
+.lds-roller div:nth-child(7):after {
+    top: 63px;
+    left: 17px;
+}
+
+.lds-roller div:nth-child(8) {
+    animation-delay: -0.288s;
+}
+
+.lds-roller div:nth-child(8):after {
+    top: 56px;
+    left: 12px;
+}
+
+@keyframes lds-roller {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+// 
+.main-layout-active {
+    background-color: #000000 !important;
+    border: 1px solid #000000;
+    color: #9c9c9c;
+}
+
+// Form spinal
+.form-spinal-con {
+    background-color: rgba(255, 255, 255, 0.9);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+
+@media (min-width:768px) {
+     ::-webkit-scrollbar,
+     ::-webkit-scrollbar-thumb {
+        width: 10px;
+        // border-radius: 13px;
+        // background-clip: padding-box;
+        height: 7px;
+        border: 1px solid rgb(53, 53, 53);
+        ;
+    }
+     ::-webkit-scrollbar-thumb {
+        background: rgb(61, 61, 61);
+    }
+}

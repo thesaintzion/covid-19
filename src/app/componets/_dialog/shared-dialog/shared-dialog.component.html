@@ -1,0 +1,29 @@
+<div class=" con">
+    <!-- <div class="text-center"> -->
+    <p *ngIf="data.message.p2" class="text-bolder  mb-2">
+        Covid-19
+    </p>
+    <p *ngIf="data.message.p1" class="d-block mb-1">{{data.message.p1}}</p>
+
+    <p *ngIf="data.message.p2" class="d-block mb-3">{{data.message.p2}}</p>
+    <div *ngIf="data.message.p2">
+        <hr class="mb-1 mt-4">
+        <small>Developed by: <strong>Saint</strong></small>
+        <br>
+        <small>Whatsapp: <strong>+2349055175876</strong></small>
+        <br>
+        <small>Email: <strong>saintzion777@gmail.com</strong></small>
+
+    </div>
+    <hr class="mb-0">
+
+    <!-- </div> -->
+    <div>
+
+        <div class="  d-flex justify-content-end w-100">
+            <div class="">
+                <button class="red-color" color="primary" tabindex="-1" mat-dialog-close mat-button>Close</button>
+            </div>
+        </div>
+    </div>
+</div>

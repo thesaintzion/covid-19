@@ -1,0 +1,27 @@
+<div class="main-layout black-bg">
+    <!-- <div>
+        <div class="video_icon">
+            <a class="popup-video video_play_button ">
+                <mat-icon>settings_input_antenna</mat-icon>
+            </a>
+        </div>
+    </div> -->
+    <!-- <div *ngIf="!loading" class="bg rotate "></div> -->
+    <div *ngIf="loading" class="welcome-screen animated fadeOut  delay-5s  d-flex justify-content-center d-flex flex-column align-items-center position-relative ">
+        <div class="text-center">
+            <img class="rotate " src="../../../../assets/logo/corona-logo.svg">
+        </div>
+
+        <footer class="text-center position-absolute ">
+            <h1 class="animated fadeInUp delay-1s">COVID-19</h1>
+            <p class="animated fadeInDown delay-1s">The Chinese Virus</p>
+        </footer>
+    </div>
+
+
+    <div *ngIf="!loading" class="animated fadeIn duration-5s">
+        <router-outlet>
+        </router-outlet>
+    </div>
+</div>
+<app-scroll-up></app-scroll-up>

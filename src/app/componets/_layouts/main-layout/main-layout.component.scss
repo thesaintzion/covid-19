@@ -1,0 +1,114 @@
+:host ::ng-deep {
+    $dark-red-color: #A82C2C;
+    $red-color: #EA1313;
+    $white-color: #C4C4C4;
+    $dark-gray-bg: #2A2B2E;
+    $dark-gray-bg-2: #3F3D3D;
+    .main-layout {
+        min-height: 100vh;
+        position: relative;
+        .bg {
+            background: #000000 url('../../../../assets/logo/corona-logo.svg');
+            background-position: bottom left;
+            background-size: 30%;
+            // background-repeat: no-repeat;
+            opacity: 0.2;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            z-index: 0;
+        }
+    }
+    .welcome-screen {
+        min-height: 100vh;
+        z-index: 20;
+        img {
+            margin-bottom: 200px;
+        }
+        footer {
+            position: absolute;
+            width: 100%;
+            bottom: 30px;
+            h1 {
+                font-size: 20px;
+                color: $dark-red-color;
+            }
+            p {
+                color: $white-color;
+            }
+        }
+    }
+    .video_icon .video_play_button {
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        line-height: 30px;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+        background-image: linear-gradient(160deg, #ffc107 0%, rgb(255, 251, 0) 100%);
+        // background-image: linear-gradient(160deg, rgba(79, 172, 254, 0.9) 0%, #00f2fe 100%);
+        display: inline-block;
+        color: #fff;
+        position: relative;
+        z-index: 2;
+        .mat-icon {
+            vertical-align: middle;
+            font-size: 100%;
+            color: #000;
+        }
+        &::before {
+            content: "";
+            position: absolute;
+            z-index: 0;
+            display: block;
+            width: 100%;
+            height: 100%;
+            background: #ffc107;
+            // background: #00f2fe;
+            border-radius: 50%;
+            animation: pulse-border 1500ms ease-out infinite;
+            left: 0;
+            bottom: 0;
+            z-index: -1;
+        }
+    }
+    @keyframes pulse-border {
+        0% {
+            transform: scale(1);
+            opacity: 1
+        }
+        100% {
+            transform: scale(1.8);
+            opacity: 0
+        }
+    }
+    @media (max-width: 991.93px) {
+        .hide-mobile {
+            display: none !important;
+        }
+        .welcome-screen {
+            min-height: 100vh;
+            z-index: 20;
+            img {
+                // margin-bottom: 200px;
+                width: 150px;
+            }
+            footer {
+                position: absolute;
+                width: 100%;
+                bottom: 20px;
+                h1 {
+                    font-size: 20px;
+                    color: $dark-red-color;
+                    font-weight: bolder;
+                }
+                p {
+                    color: $white-color;
+                }
+            }
+        }
+    }
+}
