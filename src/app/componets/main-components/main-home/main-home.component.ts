@@ -221,7 +221,7 @@ return  `https://www.countryflags.io/${this.missingCountries[country]}/flat/64.p
 
 openDialog(): void {
   let message  = {
-    p1 : 'Please stay at home to prevent the spread of this deadly virus.',
+    p1 : 'Please stay home and stay safe, love you.',
     p2: 'Come here to get the latest and accurate updates.'
 
   } 
