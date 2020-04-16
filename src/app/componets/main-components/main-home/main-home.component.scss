@@ -8,6 +8,18 @@
         border-radius: 60px;
         // background-color: #eee;
     }
+    .header-image {
+        background-position: center;
+        background-repeat: no-repeat;
+        border-radius: 50% !important;
+    }
+    button {
+        &:hover {
+            .mat-icon {
+                color: $red-color !important;
+            }
+        }
+    }
     header {
         .mat-icon-button {
             height: 36px;

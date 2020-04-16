@@ -5,11 +5,11 @@
                 <h4 class="dark-red-color text-bolder m-0">Covid-19 </h4>
                 <div>
 
-                    <button (click)="comingSoon()" mat-icon-button class="dark-red-color">
+                    <button (click)="comingSoon()" mat-icon-button class="text-dark">
                         <mat-icon>settings</mat-icon>
                     </button>
                     <button (click)="openDialog()" mat-icon-button class="ml-3">
-                        <mat-icon  class="dark-red-color">more_vert</mat-icon>
+                        <mat-icon  class="text-dark">more_vert</mat-icon>
                     </button>
                 </div>
             </header>
@@ -17,7 +17,7 @@
                 <div class="input-group mb-3 shadow">
                     <div *ngIf="searching" class="input-group-prepend">
                         <span class="input-group-text dark-gray-bg">
-                        <div mat-icon-button class="bg-dark" (click)="closeSearch()" >
+                        <div mat-icon-button  (click)="closeSearch()" >
                         <mat-icon  class="dark-red-color">keyboard_backspace</mat-icon>
                     </div>
                     </span>
@@ -62,15 +62,34 @@
                 </div>
             </div>
 
+            <!-- Continent -->
+            <!-- <div *ngIf="!searching" class="row white-color  global m-mobile-0">
+                <ng-container *ngFor="let casesByCountry of casesByCountries">
+                    <div *ngIf="casesByCountry.country == continents[casesByCountry.country]" class="col-4 mb-3">
+                        <div class="  dark-gray-bg border-radius-8 h-100">
+                            <span class="d-block mb-2">{{casesByCountry.country}}</span>
+                            <h3>Recovered</h3>
+                            <p class="green-color text-bolder">Ok</p>
+                        </div>
+                    </div>
+                </ng-container>
+            </div> -->
+
+
             <div class="row country mt-5 m-mobile-0">
                 <div class="col-12 mb-3">
-                    <div class="d-flex justify-content-between  white-color">
-                        <p class="m-0">Countries</p>
+                    <div class="d-flex justify-content-between  text-dark">
+                        <h4 class="m-0">{{sort}}</h4>
                         <div>
-                            <button mat-icon-button>
-                               
-                                <mat-icon class="text-muted">more_horiz</mat-icon>
+                            <button mat-button [matMenuTriggerFor]="sortMenu" mat-icon-button>
+                                <mat-icon class="text-dark">more_vert</mat-icon>
                             </button>
+
+                            <mat-menu matTooltip="Sort" #sortMenu="matMenu">
+                                <strong class="px-3">Sort by:</strong>
+                                <button mat-menu-item (click)="haddleSort('Country')">Country</button>
+                                <button mat-menu-item (click)="haddleSort('Continent')">Countenent</button>
+                            </mat-menu>
                         </div>
                     </div>
                 </div>
@@ -102,102 +121,206 @@
                         <button (click)="getCountries()" class="dark-gray-bg dark-red-color" mat-raised-button colo="warn">Reload <mat-icon>refresh</mat-icon></button>
                     </div>
                     <ng-template #showManCoutries>
-                        <div *ngFor="let casesByCountry of casesByCountries" class=" col-lg-4 col-xl-4 mb-4">
-                            <mat-card class=" dark-gray-bg border-radius-8">
-                                <mat-card-header class="white-color">
-                                    <div mat-card-avatar [ngStyle]="{'background-image':'url('+getCountry(casesByCountry.country)+')'}" class="example-header-image bg-dark"></div>
-                                    <mat-card-title>{{casesByCountry.country}}</mat-card-title>
+                        <ng-container *ngFor="let casesByCountry of casesByCountries">
+                            <!-- Continent -->
 
-                                    <mat-card-subtitle>{{date | date }}</mat-card-subtitle>
-                                </mat-card-header>
-                                <mat-card-content>
-                                    <div class="body">
+                            <div *ngIf="casesByCountry.country === continents[casesByCountry.country] && sort === 'Continent'" class=" col-lg-4 col-xl-4 mb-4">
+                                <mat-card class=" dark-gray-bg  border-radius-8">
+                                    <mat-card-header class="white-color">
 
-                                        <p class="">Total Cases:
-                                            <span *ngIf="casesByCountry.cases > 1000 else showTC" class="ml-2 text-bolder">
+                                        <div style="background-image: url('../../../../assets/img/earth.jpg')" mat-card-avatar class="header-image bg-dark"></div>
+                                        <mat-card-title>{{casesByCountry.country}}</mat-card-title>
+
+                                        <mat-card-subtitle>{{date | date }}</mat-card-subtitle>
+                                    </mat-card-header>
+                                    <mat-card-content>
+                                        <div class="body">
+
+                                            <p class="">Total Cases:
+                                                <span *ngIf="casesByCountry.cases > 1000 else showTC" class="ml-2 text-bolder">
                                         {{casesByCountry.cases | number:'2.'}}
                                     </span>
-                                            <ng-template #showTC>
-                                                <span class="ml-2 text-bolder">
+                                                <ng-template #showTC>
+                                                    <span class="ml-2 text-bolder">
                                             {{casesByCountry.cases}}
                                         </span>
-                                            </ng-template>
-                                        </p>
-                                        <p class=" ">Active Cases:
-                                            <span *ngIf="casesByCountry.active >= 1000 else showAC" class="ml-2 text-bolder">
+                                                </ng-template>
+                                            </p>
+                                            <p class=" ">Active Cases:
+                                                <span *ngIf="casesByCountry.active >= 1000 else showAC" class="ml-2 text-bolder">
                                             {{casesByCountry.active | number:'2.'}}
                                         </span>
-                                            <ng-template #showAC>
-                                                <span class="ml-2 text-bolder">
+                                                <ng-template #showAC>
+                                                    <span class="ml-2 text-bolder">
                                                 {{casesByCountry.active}}
                                             </span>
-                                            </ng-template>
-                                        </p>
+                                                </ng-template>
+                                            </p>
 
-                                        <p class=" ">Recovered Cases:
-                                            <span *ngIf="casesByCountry.recovered >= 1000 else showR" class="green-color ml-2 text-bolder">
+                                            <p class=" ">Recovered Cases:
+                                                <span *ngIf="casesByCountry.recovered >= 1000 else showR" class="green-color ml-2 text-bolder">
                                             {{casesByCountry.recovered | number:'2.'}}
                                         </span>
-                                            <ng-template #showR>
-                                                <span class="green-color ml-2 text-bolder">
+                                                <ng-template #showR>
+                                                    <span class="green-color ml-2 text-bolder">
                                                 {{casesByCountry.recovered}}
                                             </span>
-                                            </ng-template>
-                                        </p>
+                                                </ng-template>
+                                            </p>
 
 
-                                        <p class=" ">Today Cases:
-                                            <span *ngIf="casesByCountry.todayCases >= 1000 else showNC" class="ml-2 text-bolder text-warning">
+                                            <p class=" ">Today Cases:
+                                                <span *ngIf="casesByCountry.todayCases >= 1000 else showNC" class="ml-2 text-bolder text-warning">
                                             +{{casesByCountry.todayCases | number:'2.'}}
                                         </span>
-                                            <ng-template #showNC>
-                                                <span class="ml-2 text-bolder text-warning">
+                                                <ng-template #showNC>
+                                                    <span class="ml-2 text-bolder text-warning">
                                             +{{casesByCountry.todayCases}}
                                         </span>
-                                            </ng-template>
-                                        </p>
+                                                </ng-template>
+                                            </p>
 
 
-                                        <p class=" ">Critical condition:
-                                            <span *ngIf="casesByCountry.critical >= 1000 else showCC" class="ml-2 text-bolder ">
+                                            <p class=" ">Critical condition:
+                                                <span *ngIf="casesByCountry.critical >= 1000 else showCC" class="ml-2 text-bolder ">
                                             {{casesByCountry.critical | number:'2.'}}
                                         </span>
-                                            <ng-template #showCC>
-                                                <span class="ml-2 text-bolder">
+                                                <ng-template #showCC>
+                                                    <span class="ml-2 text-bolder">
                                             {{casesByCountry.critical}}
                                         </span>
-                                            </ng-template>
-                                        </p>
+                                                </ng-template>
+                                            </p>
 
-                                        <p class=" ">Today Deaths:
-                                            <span *ngIf="casesByCountry.todayDeaths >= 1000 else showTD" class="ml-2 dark-red-color text-bolder ">
+                                            <p class=" ">Today Deaths:
+                                                <span *ngIf="casesByCountry.todayDeaths >= 1000 else showTD" class="ml-2 dark-red-color text-bolder ">
                                             {{casesByCountry.todayDeaths | number:'2.'}}
                                         </span>
 
-                                            <ng-template #showTD>
-                                                <span class="ml-2 dark-red-color text-bolder">
+                                                <ng-template #showTD>
+                                                    <span class="ml-2 dark-red-color text-bolder">
                                             {{casesByCountry.todayDeaths}}
                                             </span>
-                                            </ng-template>
-                                        </p>
+                                                </ng-template>
+                                            </p>
 
-                                        <!-- <p class=" ">New Deaths: <span class="red-color ml-2 text-bolder">+{{casesByCountry.todayDeaths }}</span></p> -->
-                                        <p class=" ">Total Deaths:
-                                            <span *ngIf="casesByCountry.deaths >= 1000 else showTOD" class="ml-2 dark-red-color text-bolder ">
+                                            <!-- <p class=" ">New Deaths: <span class="red-color ml-2 text-bolder">+{{casesByCountry.todayDeaths }}</span></p> -->
+                                            <p class=" ">Total Deaths:
+                                                <span *ngIf="casesByCountry.deaths >= 1000 else showTOD" class="ml-2 dark-red-color text-bolder ">
                                             {{casesByCountry.deaths | number:'2.'}}
                                         </span>
 
-                                            <ng-template #showTOD>
-                                                <span class="ml-2 dark-red-color text-bolder">
+                                                <ng-template #showTOD>
+                                                    <span class="ml-2 dark-red-color text-bolder">
                                             {{casesByCountry.deaths}}
                                         </span>
 
-                                            </ng-template>
-                                        </p>
-                                    </div>
-                                </mat-card-content>
-                            </mat-card>
-                        </div>
+                                                </ng-template>
+                                            </p>
+                                        </div>
+                                    </mat-card-content>
+                                </mat-card>
+                            </div>
+
+                            <!-- Countries -->
+                            <div *ngIf="casesByCountry.country != continents2[casesByCountry.country] && sort === 'Country'" class=" col-lg-4 col-xl-4 mb-4">
+                                <mat-card class=" dark-gray-bg border-radius-8">
+                                    <mat-card-header class="white-color">
+                                        <div mat-card-avatar [ngStyle]="{'background-image':'url('+getCountry(casesByCountry.country)+')'}" class="example-header-image bg-dark"></div>
+                                        <mat-card-title>{{casesByCountry.country}}</mat-card-title>
+
+                                        <mat-card-subtitle>{{date | date }}</mat-card-subtitle>
+                                    </mat-card-header>
+                                    <mat-card-content>
+                                        <div class="body">
+
+                                            <p class="">Total Cases:
+                                                <span *ngIf="casesByCountry.cases > 1000 else showTC" class="ml-2 text-bolder">
+                                        {{casesByCountry.cases | number:'2.'}}
+                                    </span>
+                                                <ng-template #showTC>
+                                                    <span class="ml-2 text-bolder">
+                                            {{casesByCountry.cases}}
+                                        </span>
+                                                </ng-template>
+                                            </p>
+                                            <p class=" ">Active Cases:
+                                                <span *ngIf="casesByCountry.active >= 1000 else showAC" class="ml-2 text-bolder">
+                                            {{casesByCountry.active | number:'2.'}}
+                                        </span>
+                                                <ng-template #showAC>
+                                                    <span class="ml-2 text-bolder">
+                                                {{casesByCountry.active}}
+                                            </span>
+                                                </ng-template>
+                                            </p>
+
+                                            <p class=" ">Recovered Cases:
+                                                <span *ngIf="casesByCountry.recovered >= 1000 else showR" class="green-color ml-2 text-bolder">
+                                            {{casesByCountry.recovered | number:'2.'}}
+                                        </span>
+                                                <ng-template #showR>
+                                                    <span class="green-color ml-2 text-bolder">
+                                                {{casesByCountry.recovered}}
+                                            </span>
+                                                </ng-template>
+                                            </p>
+
+
+                                            <p class=" ">Today Cases:
+                                                <span *ngIf="casesByCountry.todayCases >= 1000 else showNC" class="ml-2 text-bolder text-warning">
+                                            +{{casesByCountry.todayCases | number:'2.'}}
+                                        </span>
+                                                <ng-template #showNC>
+                                                    <span class="ml-2 text-bolder text-warning">
+                                            +{{casesByCountry.todayCases}}
+                                        </span>
+                                                </ng-template>
+                                            </p>
+
+
+                                            <p class=" ">Critical condition:
+                                                <span *ngIf="casesByCountry.critical >= 1000 else showCC" class="ml-2 text-bolder ">
+                                            {{casesByCountry.critical | number:'2.'}}
+                                        </span>
+                                                <ng-template #showCC>
+                                                    <span class="ml-2 text-bolder">
+                                            {{casesByCountry.critical}}
+                                        </span>
+                                                </ng-template>
+                                            </p>
+
+                                            <p class=" ">Today Deaths:
+                                                <span *ngIf="casesByCountry.todayDeaths >= 1000 else showTD" class="ml-2 dark-red-color text-bolder ">
+                                            {{casesByCountry.todayDeaths | number:'2.'}}
+                                        </span>
+
+                                                <ng-template #showTD>
+                                                    <span class="ml-2 dark-red-color text-bolder">
+                                            {{casesByCountry.todayDeaths}}
+                                            </span>
+                                                </ng-template>
+                                            </p>
+
+                                            <!-- <p class=" ">New Deaths: <span class="red-color ml-2 text-bolder">+{{casesByCountry.todayDeaths }}</span></p> -->
+                                            <p class=" ">Total Deaths:
+                                                <span *ngIf="casesByCountry.deaths >= 1000 else showTOD" class="ml-2 dark-red-color text-bolder ">
+                                            {{casesByCountry.deaths | number:'2.'}}
+                                        </span>
+
+                                                <ng-template #showTOD>
+                                                    <span class="ml-2 dark-red-color text-bolder">
+                                            {{casesByCountry.deaths}}
+                                        </span>
+
+                                                </ng-template>
+                                            </p>
+                                        </div>
+                                    </mat-card-content>
+                                </mat-card>
+                            </div>
+
+                        </ng-container>
                     </ng-template>
                 </ng-template>
 

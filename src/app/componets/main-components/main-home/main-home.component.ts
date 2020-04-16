@@ -64,13 +64,43 @@ export class MainHomeComponent implements OnInit {
     "Turks and Caicos" : "TC",
     "British Virgin Islands": "VG",
     "Laos": "LA"
-  
   }
+
+
+  // continents = [];
+
+  continents = {
+    'North America' : 'North America', 
+    'Europe': 'Europe', 
+    'Asia': 'Asia', 
+    'South America': 'South America',
+    'Oceania': 'Oceania',
+    'Africa' : 'Africa',
+  }
+
+  continents2 = {
+    'North America' : 'North America', 
+    'Europe': 'Europe', 
+    'Asia': 'Asia', 
+    'South America': 'South America',
+    'Oceania': 'Oceania',
+    'Africa' : 'Africa',
+    'World': 'World', 
+    "": ""
+  }
+
+  sort = 'Country';
+
 
   constructor(public apiService: ApiService, private formBuilder: FormBuilder, private dialog: MatDialog, private router: Router) { 
     this.searchForm = this.formBuilder.group({
       searchInput: ['', [Validators.required]]
     })   
+  }
+
+  //Handle sort
+  haddleSort(sort){
+this.sort = sort;
   }
   
       // 
